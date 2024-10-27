@@ -16,6 +16,26 @@ import { Product } from "@/types/TypesProps";
 
 export default function AdminProductsPage() {
 
+   // // Use the Product type in useState
+   const [products, setProducts] = useState<Product[]>([]);
+
+   useEffect(() => {
+     const fetchData = async () => {
+       const data = await getAllProducts();
+       setProducts(data);
+     };
+ 
+     fetchData();
+   }, []);
+
+   console.log(products);
+   // const products: Product[] = await getAllProducts(); // Await the promise
+
+ if (products.length === 0) {
+   console.log("No products found")
+   return <div className="p-10 text-center">No products found</div>
+ }
+
 
   return (
     <>
@@ -29,37 +49,19 @@ export default function AdminProductsPage() {
           textColor="black" 
           borderColor="purple" 
           fullWidth={false} 
+          classname=""
         />
       </Link>
     </div>
-    <ProductTable />
+    <ProductTable products={products}/>
     </>
   );
 }
 
 
-const ProductTable = async ()=> {
+const ProductTable = ({products}: {products: Product[]})=> {
 
-    // // Use the Product type in useState
-    const [products, setProducts] = useState<Product[]>([]);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        const data = await getAllProducts();
-        setProducts(data);
-      };
   
-      fetchData();
-    }, []);
-
-    console.log(products);
-    // const products: Product[] = await getAllProducts(); // Await the promise
-
-  if (products.length === 0) {
-    console.log("No products found")
-    return <div className="p-10 text-center">No products found</div>
-  }
-
   return <Table>
     <TableHeader>
       <TableRow>
