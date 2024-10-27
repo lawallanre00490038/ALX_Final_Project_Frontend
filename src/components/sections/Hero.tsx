@@ -42,7 +42,7 @@ const Hero = () => {
           </span>
           <br />
           <span className="text-purple-900 inline-block mt-3">
-            MoAdunni{" "}
+            Mo'Adunni{" "}
           </span>{" "}
         </h1>
         <p className="text-slate-gray text-lg leading-8 mt-6 mb-14 sm:max-w-sm">

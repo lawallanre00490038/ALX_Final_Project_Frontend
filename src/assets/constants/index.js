@@ -34,9 +34,9 @@ export const navLinks = [
 // ];
 
 export const statistics = [
-  { value: "1k+", label: "Brands" },
-  { value: "500+", label: "Shops" },
-  { value: "250k+", label: "Customers" },
+  { value: "5+", label: "Brands" },
+  { value: "2+", label: "Shops" },
+  { value: "50+", label: "Customers" },
 ];
 
 export const services = [
