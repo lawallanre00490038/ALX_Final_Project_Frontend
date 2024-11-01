@@ -2,10 +2,12 @@
 
 import db from "@/db/db"
 import { z } from "zod"
-import fs from "fs/promises"
+// import fs from "fs/promises"
 import { notFound, redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { ProductCategory } from "@prisma/client";
+import { saveAndManipulateImageToCloudinary } from "@/cloudinary/utils"
+
 
 
 
@@ -35,12 +37,21 @@ export async function addProduct(prevState: unknown, formData: FormData) {
   // const filePath = `products/${crypto.randomUUID()}-${data.file.name}`
   // await fs.writeFile(filePath, Buffer.from(await data.file.arrayBuffer()))
 
-  await fs.mkdir(`public/products/${data.category}`, { recursive: true })
-  const imagePath = `/products/${data.category}/${crypto.randomUUID()}-${data.image.name}`
-  await fs.writeFile(
-    `public${imagePath}`,
-    Buffer.from(await data.image.arrayBuffer())
-  )
+
+  // Save Image
+  // await fs.mkdir(`public/products/${data.category}`, { recursive: true })
+  // const imagePath = `/products/${data.category}/${crypto.randomUUID()}-${data.image.name}`
+  // await fs.writeFile(
+  //   `public${imagePath}`,
+  //   Buffer.from(await data.image.arrayBuffer())
+  // )
+
+ const imageResponse = (await saveAndManipulateImageToCloudinary(data))
+ const imagePath = imageResponse?.secure_url ?? "";
+ console.log("Image Response from Cloudinary", imageResponse)
+
+ console.log("First Image from Cloudinary", imagePath)
+
 
   await db.product.create({
     data: {
@@ -89,12 +100,15 @@ export async function updateProduct(
 
   let imagePath = product.imagePath
   if (data.image != null && data.image.size > 0) {
-    await fs.unlink(`public${product.imagePath}`)
-    imagePath = `/products/${crypto.randomUUID()}-${data.image.name}`
-    await fs.writeFile(
-      `public${imagePath}`,
-      Buffer.from(await data.image.arrayBuffer())
-    )
+    // await fs.unlink(`public${product.imagePath}`)
+    // imagePath = `/products/${crypto.randomUUID()}-${data.image.name}`
+    // await fs.writeFile(
+    //   `public${imagePath}`,
+    //   Buffer.from(await data.image.arrayBuffer())
+    // )
+    // Update the cloudinary image
+    const imageResponse = (await saveAndManipulateImageToCloudinary(data))
+    imagePath = imageResponse?.secure_url ?? "";
   }
 
   await db.product.update({
@@ -131,8 +145,8 @@ export async function deleteProduct(id: string) {
 
   if (product == null) return notFound()
 
-  // await fs.unlink(product.filePath)
-  await fs.unlink(`public${product.imagePath}`)
+  // Delete the cloudinary iamge
+  const imageResponse = (await saveAndManipulateImageToCloudinary({ public_id: product.imagePath }, true))?.secure_url ?? "";
   
   revalidatePath("/")
   redirect("/admin/products")
