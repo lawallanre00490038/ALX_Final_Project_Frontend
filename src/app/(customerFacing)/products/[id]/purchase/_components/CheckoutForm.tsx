@@ -42,7 +42,7 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
 
   return (
     <div className="max-w-5xl w-full mx-auto space-y-8 pt-[100px] md:pt-[150px] px-4">
-      <div className="flex gap-4 items-center md:flex-row flex-col">
+      <div className="flex gap-4 items-center md:flex-row flex-col mt-4 md:mt-0">
         <div className="flex-shrink-0 relative">
           <Image
             src={product.imagePath}
