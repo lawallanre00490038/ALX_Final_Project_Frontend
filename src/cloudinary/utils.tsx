@@ -1,5 +1,4 @@
 import cloudinary from "cloudinary";
-import { boolean } from "zod";
 
 // Configure Cloudinary
 cloudinary.v2.config({
@@ -31,3 +30,9 @@ export const saveAndManipulateImageToCloudinary = async (data: any, deletePrevio
 
     return uploadedImageResponse;
 };
+
+
+
+ export const imagePathFunction = (imageResponse: any)=> {
+    return `${process.env.CLOUDINARY_IMAGE_URL}/${imageResponse?.asset_folder}/${imageResponse?.display_name}.jpg`
+ }

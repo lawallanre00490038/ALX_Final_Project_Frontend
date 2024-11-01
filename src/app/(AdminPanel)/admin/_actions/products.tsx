@@ -6,9 +6,7 @@ import { z } from "zod"
 import { notFound, redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { ProductCategory } from "@prisma/client";
-import { saveAndManipulateImageToCloudinary } from "@/cloudinary/utils"
-
-
+import { saveAndManipulateImageToCloudinary, imagePathFunction } from "@/cloudinary/utils"
 
 
 const fileSchema = z.instanceof(File, { message: "Required" })
@@ -47,13 +45,10 @@ export async function addProduct(prevState: unknown, formData: FormData) {
   // )
 
  const imageResponse = (await saveAndManipulateImageToCloudinary(data))
- const imagePath = imageResponse?.url ?? "";
-
-
- console.log("Image Response from Cloudinary", imageResponse)
+ 
+ const imagePath = imagePathFunction(imageResponse)
 
  console.log("First Image from Cloudinary", imagePath)
-
 
   await db.product.create({
     data: {
@@ -110,7 +105,7 @@ export async function updateProduct(
     // )
     // Update the cloudinary image
     const imageResponse = (await saveAndManipulateImageToCloudinary(data))
-    imagePath = imageResponse?.secure_url ?? "";
+    imagePath = imagePathFunction(imageResponse)
   }
 
   await db.product.update({
