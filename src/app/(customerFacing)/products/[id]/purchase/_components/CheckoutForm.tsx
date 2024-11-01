@@ -52,7 +52,7 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
             className="object-cover"
           />
         </div>
-        <div className="flex justify-between w-full md:w-2/3">
+        <div className="flex justify-center md:justify-between w-full md:w-2/3 p-2">
           <div>
             <div className="text-lg">
               {formatCurrency(product.priceInNaira * quantity)}
@@ -64,10 +64,10 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
           </div>
 
           {/* create a vertical line to separate the product details and the purchase details */}
-          <div className="border-r border-gray-300 h-[200px]"></div>
+          <div className="border-r border-gray-300 h-auto mx-2"></div>
           
           {/* Increase the number of purcahses by adding a quantity input field */}
-          <div className="flex space-x-2 items-center justify-center self-start">
+          <div className="flex space-x-2 items-center justify-center self-start p-2">
             <label htmlFor="quantity">Quantity</label>
             <input
               type="number"
@@ -77,7 +77,7 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
               max="10"
               onChange={(e) => setQuantity(+e.target.value)}
               defaultValue={quantity}
-              className="p-4 border border-gray-300 rounded-lg"
+              className="p-2 md:p-4 border border-gray-300 rounded-lg"
             />
         </div>
         </div>
