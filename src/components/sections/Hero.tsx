@@ -3,7 +3,7 @@
 import { statistics } from "../../assets/constants";
 import { arrowRight } from "../../assets/icons";
 import Button from "../Button";
-import ShoeCard from "../HeroDressCard";
+import HeroDressCard from "../HeroDressCard";
 import {  useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -90,7 +90,7 @@ const Hero = () => {
         <div className="flex sm:gap-6 gap-4 absolute -bottom-[-10%] md:-bottom-[5%] sm:left-[10%] max-sm:px-6 items-center justify-center">
           {products.map((dress, index) => (
             <Link href={`#hero-image`} key={index}>
-              <ShoeCard
+              <HeroDressCard
                 imgURL={dress}
                 key={index}
                 changeBigDressmage={(dress: any) => setBigDressImg(dress)}
