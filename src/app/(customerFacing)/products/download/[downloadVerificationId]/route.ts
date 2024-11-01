@@ -17,6 +17,10 @@ export async function GET(
     return NextResponse.redirect(new URL("/products/download/expired", req.url))
   }
 
+  if (!data.product.filePath) {
+    throw new Error("File path is not defined");
+  }
+
   const { size } = await fs.stat(data.product.filePath)
   const file = await fs.readFile(data.product.filePath)
   const extension = data.product.filePath.split(".").pop()
