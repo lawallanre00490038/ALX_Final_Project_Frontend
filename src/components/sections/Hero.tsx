@@ -87,7 +87,7 @@ const Hero = () => {
           />
         )}
 
-        <div className="flex sm:gap-6 gap-4 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6 items-center justify-center">
+        <div className="flex sm:gap-6 gap-4 absolute -bottom-[-10%] md:-bottom-[5%] sm:left-[10%] max-sm:px-6 items-center justify-center">
           {products.map((dress, index) => (
             <Link href={`#hero-image`} key={index}>
               <ShoeCard
