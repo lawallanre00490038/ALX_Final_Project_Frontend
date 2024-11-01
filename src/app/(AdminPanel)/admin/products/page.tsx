@@ -31,12 +31,6 @@ export default function AdminProductsPage() {
    console.log(products);
    // const products: Product[] = await getAllProducts(); // Await the promise
 
- if (products.length === 0) {
-   console.log("No products found")
-   return <div className="p-10 text-center">No products found</div>
- }
-
-
   return (
     <>
     <div className="flex justify-between items-center gap-4 p-10">
@@ -53,7 +47,13 @@ export default function AdminProductsPage() {
         />
       </Link>
     </div>
-    <ProductTable products={products}/>
+    {
+      products.length === 0 ? 
+      (
+        <div className="p-10 text-center">No products found</div>
+      ) :
+      
+      <ProductTable products={products}/>}
     </>
   );
 }
@@ -78,8 +78,8 @@ const ProductTable = ({products}: {products: Product[]})=> {
       </TableRow>
     </TableHeader>
     <TableBody>
-      {products.map((product) => (
-        <TableRow key={product.id}>
+      {products.map((product, index) => (
+        <TableRow key={index}>
           <TableCell className="text-center">
             {product.isAvailableForPurchase ? 
             (
@@ -106,9 +106,9 @@ const ProductTable = ({products}: {products: Product[]})=> {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="flex flex-col gap-2 justify-center bg-primary p-2">
                 <DropdownMenuItem asChild className="p-2">
-                  <a download href={`/admin/products/${product.id}/download`}>
+                  <Link download href={`/admin/products/${product.id}/download`}>
                     Download
-                  </a>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild  className="p-2">
                   <Link href={`/admin/products/${product.id}/edit`}>

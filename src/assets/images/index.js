@@ -1,8 +1,8 @@
 import customer1 from "./profile_pic.jpg";
 import customer2 from "./testimony2.jpg";
 
-import footerLogo from "./footer-logo.svg";
-import headerLogo from "./header-logo.svg";
+import footerLogo from "./logo-1.png";
+import headerLogo from "./logo-1.png";
 
 import offer from "./offer.jpg";
 

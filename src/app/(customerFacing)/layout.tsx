@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { Poppins } from 'next/font/google';
 import Structure from "@/components/Structure";
-
+import Providers from "@/components/providers/react-queries";
 const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
@@ -21,11 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={`${poppins.variable} bg-background min-h-screen font-sans antialiased`}>
-        <Structure>
-          {children}
-        </Structure>
+        <Providers>
+          <Structure>
+            {children}
+          </Structure>
+        </Providers>
       </body>
     </html>
   );

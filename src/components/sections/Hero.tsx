@@ -17,15 +17,20 @@ const Hero = () => {
   // Loading state
   const fetchProducts = async () => {
     let response = await getHeroProducts();
+    console.log("Hero Images", response);
+    
     const res = response[0].imagePath;
     setBigDressImg(res);
+    console.log("Hero Bigimage", response[0].imagePath);
     setProducts(response as any);
   };
 
 
   useEffect(() => {
     fetchProducts();
+   
   }, []);
+
 
   return (
     <section
@@ -59,8 +64,8 @@ const Hero = () => {
           classname=""        
         />
         <div className="flex justify-start items-start flex-wrap w-full mt-20 gap-16">
-          {statistics.map((stat) => (
-            <div key={stat.value}>
+          {statistics.map((stat, index) => (
+            <div key={index}>
               <p className="text-4xl font-palanquin font-bold">{stat.value}</p>
               <p className="font-montserrat leading-7 text-slate-gray">
                 {stat.label}
@@ -71,19 +76,23 @@ const Hero = () => {
       </div>
 
       <div className="relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:pb-24 bg-primary bg-hero bg-cover bg-center">
-        <Image
-          src={bigDressImg}
-          alt="shoe collection"
-          height={300}
-          width={300}
-          id="hero-image"
-          className="object-contain relative z-10 md:w-[500px] h-[500px]"
-        />
+        {bigDressImg && (
+          <Image
+            src={bigDressImg}
+            alt="shoe collection"
+            height={300}
+            width={300}
+            id="hero-image"
+            className="object-contain relative z-10 md:w-[500px] h-[500px]"
+          />
+        )}
+
         <div className="flex sm:gap-6 gap-4 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6 items-center justify-center">
           {products.map((dress, index) => (
             <Link href={`#hero-image`} key={index}>
               <ShoeCard
                 imgURL={dress}
+                key={index}
                 changeBigDressmage={(dress: any) => setBigDressImg(dress)}
                 bigDressImg={bigDressImg}
               />

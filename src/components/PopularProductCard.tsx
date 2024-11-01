@@ -7,7 +7,7 @@ import { formatCurrency } from "@/utils/Getter";
 import Button from "./Button";
 
 
-const PopularProductCard = ({id, imagePath, name, priceInNaira, isLast, category, description}: ProductCardProps) => {
+const PopularProductCard = ({id, imagePath, name, priceInNaira, description}: ProductCardProps) => {
   // const carrousel = [shoe7, shoe9, shoe10, shoe11, shoe12];
   // const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -26,7 +26,7 @@ const PopularProductCard = ({id, imagePath, name, priceInNaira, isLast, category
   // const displayedImage = isLast ? carrousel[currentIndex] : imagePath;
 
   return (
-    <Link href="/" className="flex flex-1 flex-col w-full max-sm:w-full">
+    <div  className="flex flex-1 flex-col w-full max-sm:w-full">
       <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">
         {name}
       </h3>
@@ -54,7 +54,7 @@ const PopularProductCard = ({id, imagePath, name, priceInNaira, isLast, category
         </Link>
       </div>
       
-    </Link>
+    </div>
   );
 };
 
@@ -74,10 +74,10 @@ export const PopularProductCardSkeleton = () => {
       </h3>
       <div className="w-300 h-300 bg-gray-300 rounded-lg aspect-video"></div>
       <p className="text-xl leading-normal font-semibold font-palanquin">
-        <div className="w-20 h-4 bg-gray-300 rounded-full mt-4"></div>
+        <p className="w-20 h-4 bg-gray-300 rounded-full mt-4"></p>
       </p>
       <p className="font-semibold font-montserrat text-gray-900 text-sm leading-normal">
-        <div className="w-20 h-4 bg-gray-300 rounded-full mt-4"></div>
+        <p className="w-20 h-4 bg-gray-300 rounded-full mt-4"></p>
       </p>
     </div>
   );

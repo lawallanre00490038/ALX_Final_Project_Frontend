@@ -66,7 +66,7 @@ export default function OrderHistoryEmail({ orders }: OrderHistoryEmailProps) {
           <Container className="max-w-xl">
             <Heading>Order History</Heading>
             {orders.map((order, index) => (
-              <React.Fragment key={order.id}>
+              <React.Fragment key={index}>
                 <OrderInformation
                   order={order}
                   product={order.product}

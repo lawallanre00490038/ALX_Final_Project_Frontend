@@ -1,18 +1,20 @@
+"use client";
+
 import { Suspense, useEffect, useState } from "react";
-import PopularProductCard, { PopularProductCardSkeleton } from "@/components/PopularProductCard";
+import { ProductSuspense, ProductSuspenseSkeleton } from "../suspense/ProductSuspence";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 import { getAllData } from "@/app/actions/GetData";
 
 const PopularProducts = () => {
 
-  const [products, setProducts] = useState([]); // List of products
-  const [page, setPage] = useState(1);
+  const [products, setProducts] = useState([]);
 
   // Loading state
-  const fetchProducts = async (page) => {
+  const fetchProducts = async () => {
     const response = await getAllData();
     setProducts(response);
+
   };
 
   const HandleFilter = async (category) => {
@@ -23,8 +25,9 @@ const PopularProducts = () => {
   }
 
   useEffect(() => {
-    fetchProducts(page);
-  }, [page]);
+    fetchProducts();
+    // setPage(1);
+  }, []);
 
 
   return (
@@ -109,25 +112,3 @@ export default PopularProducts;
 
 
 
-
-
-const ProductSuspense = async({ products }) => {
-  return (
-    <>
-      {products.map((product) => (
-        <PopularProductCard key={product.id} {...product} />
-      ))}
-    </>
-  );
-}
-
-
-const ProductSuspenseSkeleton = ({ products }) => {
-  return (
-    <>
-      {products.map((product) => (
-        <PopularProductCardSkeleton key={product.id} />
-      ))}
-    </>
-  );
-}

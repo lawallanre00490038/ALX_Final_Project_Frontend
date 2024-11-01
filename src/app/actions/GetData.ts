@@ -2,6 +2,7 @@
 
 import db from "@/db/db"
 import { cache } from "@/lib/cache";
+import { ProductCategory } from "@prisma/client";
 
 
 
@@ -22,7 +23,7 @@ export const getAllData = cache(
       orderBy: { name: "desc" },
       where: {
         isAvailableForPurchase: true,
-        ...(category && { category: category as any }),
+        ...(category && { category: category as ProductCategory }),
       },
     });
     console.log(data);

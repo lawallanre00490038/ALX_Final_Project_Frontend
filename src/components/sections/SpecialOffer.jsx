@@ -22,6 +22,7 @@ const SpecialOffer = () => {
             <Image src={offer} 
               width={750}
               height={1000}
+              alt="offer"
             className="rounded-lg" />
           </div>
         )}

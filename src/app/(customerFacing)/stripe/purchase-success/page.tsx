@@ -34,7 +34,8 @@ export default async function SuccessPage({
         <div className="aspect-video flex-shrink-0 w-1/3 relative">
           <Image
             src={product.imagePath}
-            fill
+            width={100}
+            height={100}
             alt={product.name}
             className="object-cover"
           />
