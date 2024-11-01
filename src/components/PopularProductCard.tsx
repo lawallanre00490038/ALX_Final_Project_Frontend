@@ -8,6 +8,7 @@ import Button from "./Button";
 
 
 const PopularProductCard = ({id, imagePath, name, priceInNaira, description}: ProductCardProps) => {
+
   console.log("Image path on popular products: ", imagePath)
 
   
