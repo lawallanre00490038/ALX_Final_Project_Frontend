@@ -9,6 +9,8 @@ import Button from "./Button";
 
 const PopularProductCard = ({id, imagePath, name, priceInNaira, description}: ProductCardProps) => {
   console.log("Image path on popular products: ", imagePath)
+
+  
   // const carrousel = [shoe7, shoe9, shoe10, shoe11, shoe12];
   // const [currentIndex, setCurrentIndex] = useState(0);
 

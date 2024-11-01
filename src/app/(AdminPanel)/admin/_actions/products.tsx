@@ -47,7 +47,9 @@ export async function addProduct(prevState: unknown, formData: FormData) {
   // )
 
  const imageResponse = (await saveAndManipulateImageToCloudinary(data))
- const imagePath = imageResponse?.secure_url ?? "";
+ const imagePath = imageResponse?.url ?? "";
+
+
  console.log("Image Response from Cloudinary", imageResponse)
 
  console.log("First Image from Cloudinary", imagePath)
@@ -146,7 +148,7 @@ export async function deleteProduct(id: string) {
   if (product == null) return notFound()
 
   // Delete the cloudinary iamge
-  const imageResponse = (await saveAndManipulateImageToCloudinary({ public_id: product.imagePath }, true))?.secure_url ?? "";
+  const imageResponse = (await saveAndManipulateImageToCloudinary({ public_id: product.imagePath }, true))?.url ?? "";
   
   revalidatePath("/")
   redirect("/admin/products")
@@ -165,6 +167,7 @@ export const getAllProducts = async () => {
         isAvailableForPurchase: true,
         category: true,
         _count: {select: {orders: true}},
+        imagePath: true,
       },
       orderBy: {name: "asc"},
     },
