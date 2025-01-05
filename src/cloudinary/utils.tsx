@@ -10,6 +10,10 @@ cloudinary.v2.config({
 // Function to save and manipulate the image
 export const saveAndManipulateImageToCloudinary = async (data: any, deletePrevious?: boolean) => {
     // Convert the image file to a base64 string
+    console.log(process.env.CLOUDINARY_NAME);
+    console.log(process.env.CLOUDINARY_API_KEY);
+    console.log(process.env.CLOUDINARY_API_SECRET);
+    
     if (deletePrevious) {
         await cloudinary.v2.uploader.destroy(data.public_id);
         return;

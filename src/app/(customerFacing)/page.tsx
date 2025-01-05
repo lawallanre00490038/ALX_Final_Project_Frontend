@@ -1,10 +1,8 @@
 import {
   CustomerReviews,
-  Footer,
   PopularProducts,
   Services,
   SpecialOffer,
-  Subscribe,
   SuperQuality,
 } from "@/components/sections";
 import Hero from "@/components/sections/Hero";

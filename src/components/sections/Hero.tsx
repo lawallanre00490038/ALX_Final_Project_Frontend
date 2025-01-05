@@ -19,7 +19,8 @@ const Hero = () => {
     let response = await getHeroProducts();
     console.log("Hero Images", response);
     
-    const res = response[0].imagePath;
+    // const res = response[0].imagePath;
+    const res = '/frontimg.jpg';
     setBigDressImg(res);
     console.log("Hero Bigimage", response[0].imagePath);
     setProducts(response as any);
@@ -38,21 +39,20 @@ const Hero = () => {
       className="w-full flex xl:flex-row flex-col justify-center min-h-screen gap-10 max-container"
     >
       <div className="relative xl:w-2/5 flex flex-col justify-center items-start w-full max-xl:padding-x pt-36">
-        <p className="text-xl text-purple-900">
+        {/* <p className="text-xl text-purple-900">
           Our Summer Collection
-        </p>
+        </p> */}
         <h1 className="mt-10 text-4xl md:text-8xl max-sm:text-[55px] max-sm:leading-[82px] font-bold">
           <span className="xl:bg-white xl:whitespace-nowrap relative z-10 xl:pr-10 max-sm::p-0">
-            New Collection
+            Welcome to
           </span>
           <br />
           <span className="text-purple-900 inline-block mt-3">
-            Mo'Adunni{" "}
+            Mo'Adunni Fashion Store{" "}
           </span>{" "}
         </h1>
         <p className="text-slate-gray text-lg leading-8 mt-6 mb-14 sm:max-w-sm">
-          Discover stylish Converse arrivals, quality comfort, and innovation
-          for your active life.
+         Step into comfort with our timeless African-inspired collections, curated and  crafted for the modern you.
         </p>
         <Button 
           label="Shop now" 
