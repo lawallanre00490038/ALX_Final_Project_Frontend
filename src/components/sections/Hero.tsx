@@ -20,7 +20,7 @@ const Hero = () => {
     console.log("Hero Images", response);
     
     // const res = response[0].imagePath;
-    const res = '/frontimg.jpg';
+    const res = '/frontImg.jpg';
     setBigDressImg(res);
     console.log("Hero Bigimage", response[0].imagePath);
     setProducts(response as any);
