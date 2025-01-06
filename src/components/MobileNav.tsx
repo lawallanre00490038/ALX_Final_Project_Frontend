@@ -4,6 +4,9 @@ import { motion, Variants } from 'framer-motion';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 import { navItems } from '@/assets/constants';
+import { useSession, signOut } from "next-auth/react";
+import Image from 'next/image';
+import { Button } from './ui/button';
 
 type Props = {
   isOpen: boolean;
@@ -30,6 +33,9 @@ const itemVariants: Variants | undefined = {
 // ];
 
 export const MobileNav = ({ isOpen, setIsOpen }: Props) => {
+
+  const { data: session, status } = useSession();
+
   return (
     <motion.nav
       variants={{
@@ -73,8 +79,43 @@ export const MobileNav = ({ isOpen, setIsOpen }: Props) => {
           />
         ))}
 
-        <NavItem name="Log In" link="/login" />
-        <NavItem name="Sign Up" link="/register" />
+        {status === "authenticated" ? (
+          <div className="flex items-center gap-4 mt-4">
+            {/* Display profile picture */}
+            {session.user?.image ? (
+              <Image
+                src={session.user.image || '/default-avatar.png'}
+                alt="Profile"
+                width={40}
+                height={40}
+                className="rounded-full border border-border"
+              />
+            ) : (
+              <div className="flex items-center justify-center rounded-full outline w-[40px] h-[40px] font-semibold text-center text-black bg-white">
+                <span className="space-x-2">
+                  {session.user?.name ? `${session.user.name[0]} ${session.user.name[1]}` : 'U'}
+                </span>
+              </div>
+            )}
+            {/* Sign Out Button */}
+            {/* <NavItem name="Sign Out" link="/" /> */}
+            <Button
+                onClick={() => signOut()}
+                className="h-[33px] border border-border text-primary"
+                variant={'outline'}
+              >
+                Sign Out
+              </Button>
+          </div>
+        ) : (
+          <>
+            <NavItem name="Log In" link="/login" />
+            <NavItem name="Sign Up" link="/register" />
+          </>
+        )}
+
+        {/* <NavItem name="Log In" link="/login" />
+        <NavItem name="Sign Up" link="/register" /> */}
       </motion.ul>
     </motion.nav>
   );
