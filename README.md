@@ -24,6 +24,13 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 https://medium.com/@kcsanjeeb091/implementing-jwt-based-authentication-with-next-js-v14-and-nextauth-v4-e3efca4b158b
 
 
+
+flutter:
+https://github.com/Flutterwave/Node-v3/blob/master/documentation/billPayments.md
+https://github.com/Flutterwave/React-v3?tab=readme-ov-file#components
+
+https://www.youtube.com/watch?v=fwpu3NfkmwM
+
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.

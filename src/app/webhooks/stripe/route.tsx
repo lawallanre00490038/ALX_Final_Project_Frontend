@@ -27,8 +27,10 @@ export async function POST(req: NextRequest) {
 
     const userFields = {
       email,
+      password: "defaultPassword", // Replace with actual password logic
       orders: { create: { productId, pricePaidInNaira } },
-    }
+    };
+    
     const {
       orders: [order],
     } = await db.user.upsert({
@@ -36,7 +38,9 @@ export async function POST(req: NextRequest) {
       create: userFields,
       update: userFields,
       select: { orders: { orderBy: { createdAt: "desc" }, take: 1 } },
-    })
+    });
+
+
 
     const downloadVerification = await db.downloadVerification.create({
       data: {
