@@ -2,9 +2,9 @@ import cloudinary from "cloudinary";
 
 // Configure Cloudinary
 cloudinary.v2.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
+    cloud_name: "datimqvu9",
+    api_key: "755281172548722",
+    api_secret: "itDFN-VYaGa0_1-_mUB6TbIUu5w"
 });
 
 // Function to save and manipulate the image
