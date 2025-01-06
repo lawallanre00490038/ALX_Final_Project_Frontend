@@ -11,11 +11,11 @@ import {
   customer2
 } from "@/assets/images";
 
-export const navLinks = [
-  { href: "/", label: "Home" },
+export const navItems = [
   { href: "/#about-us", label: "About Us" },
   { href: "/#products", label: "Products" },
   { href: "/#contact-us", label: "Contact Us" },
+  { href: "/cart", label: "Cart" },
 ];
 
 // export const shoes = [

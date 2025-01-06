@@ -25,7 +25,7 @@ const config: Config = {
         sans: ['var(--font-poppins)', 'sans-serif']
       },
       colors: {
-        primary: "#ECEEFF",
+        primary: "#3c2c5b",
         "purple-900": "#3c2c5b",
         "coral-red": "#FF6452",
         "slate-gray": "#6D6D6D",

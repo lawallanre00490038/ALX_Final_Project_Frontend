@@ -38,11 +38,11 @@ const Hero = () => {
       id="home"
       className="w-full flex xl:flex-row flex-col justify-center min-h-screen gap-10 max-container"
     >
-      <div className="relative xl:w-2/5 flex flex-col justify-center items-start w-full max-xl:padding-x pt-36">
+      <div className="relative xl:w-2/5 flex flex-col justify-center items-start w-full max-xl:padding-x pt-4">
         {/* <p className="text-xl text-purple-900">
           Our Summer Collection
         </p> */}
-        <h1 className="mt-10 text-4xl md:text-8xl max-sm:text-[55px] max-sm:leading-[82px] font-bold">
+        <h1 className="text-3xl md:text-8xl max-sm:text-[55px] max-sm:leading-[82px] font-bold">
           <span className="xl:bg-white xl:whitespace-nowrap relative z-10 xl:pr-10 max-sm::p-0">
             Welcome to
           </span>
@@ -54,6 +54,7 @@ const Hero = () => {
         <p className="text-slate-gray text-lg leading-8 mt-6 mb-14 sm:max-w-sm">
          Step into comfort with our timeless African-inspired collections, curated and  crafted for the modern you.
         </p>
+        <Link href="/#products">
         <Button 
           label="Shop now" 
           iconURL={arrowRight} 
@@ -63,6 +64,7 @@ const Hero = () => {
           fullWidth={false}
           classname=""        
         />
+        </Link>
         <div className="flex justify-start items-start flex-wrap w-full mt-20 gap-16">
           {statistics.map((stat, index) => (
             <div key={index}>

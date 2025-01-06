@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react'
 import { Footer, Subscribe } from './sections';
-import  Nav  from './Nav';
+import { Header } from './header';
 
 const Structure = ({ children }: { children: ReactNode }) => {
   return (
     <main className="relative overflow-hidden">
-    <Nav />
+    <Header />
     <>
       {children}
     </>
