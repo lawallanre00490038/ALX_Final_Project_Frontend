@@ -1,6 +1,7 @@
 "use client"
 
 import { formatCurrency } from "@/utils/Getter"
+import { handleAddToCart } from "@/utils/handleCart"
 import Image from "next/image"
 import { useState } from "react"
 
@@ -59,6 +60,10 @@ export function DetailsForm({ product }: detailsFormProps) {
             />
         </div>
         </div>
+        <button className="bg-primary text-white border-primary rounded-full flex justify-center items-center p-3 hover:bg-purple-950"
+        onClick={() => handleAddToCart(id, 1, cart, addToCart)}>
+          Add to Cart
+        </button>
       </div>
     </div>
   )

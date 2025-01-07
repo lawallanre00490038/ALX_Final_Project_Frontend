@@ -7,9 +7,55 @@ import { formatCurrency } from "@/utils/Getter";
 import Link from 'next/link';
 import '@/app/css/Cart.css';
 import '@/app/css/Details.css';
+import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
+import { useSession } from 'next-auth/react';
+
 
 const Cart: React.FC = () => {
   const { cart, updateQuantity, removeFromCart, getTotal, total } = useCart();
+  const { data: session } = useSession();
+
+  const config = {
+    public_key: 'FLWPUBK_TEST-16bc6cf4fb120eb416e4994b7708f33f-X',
+    tx_ref: Date.now(),
+    amount: 100,
+    currency: 'NGN',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email:  session?.user?.email || 'user@gmail.com',
+      phone_number: '070********',
+      name: session?.user?.name || 'John Doe',
+    },
+    customizations: {
+      title: `Items: ${cart.map((item) => item.product.name).join(', ')}`,
+      description: `Payment for items: ${cart
+      .map(
+        (item) =>
+          `${item.product.name} (x${item.quantity}) - ${formatCurrency(
+            item.product.priceInNaira * item.quantity
+          )}`
+      )
+      .join('\n')}`,
+      logo: '/frontImg.jpg',
+    },
+  };
+
+  const fwConfig = {
+    ...config,
+    text: 'Pay with Flutterwave!',
+    callback: (response : any) => {
+      if (response.status !== 'completed') {
+        console.log('Failed Transaction');
+      }else {
+        console.log('Payment Succeful');
+      }
+      closePaymentModal()
+    },
+    onClose: () => {},
+    tx_ref: Date.now().toString(),
+  };
+
+
   
   useEffect(() => {
     getTotal();
@@ -44,7 +90,14 @@ const Cart: React.FC = () => {
 
       
       <div className="total">
-        <Link href="/payment">Payment</Link>
+        <button
+          className='bg-slate-500 md:p-4 p-2 rounded-lg text-white hover:bg-slate-700'
+          type='submit'
+          title="Pay with Flutterwave"
+        >
+          <span className="sr-only">Pay with Flutterwave</span>
+          {session ? <FlutterWaveButton {...fwConfig} /> : <Link href="/login">Login to pay</Link>}
+        </button>
         <h3>Total: {formatCurrency(total)}</h3>
       </div>
     </>

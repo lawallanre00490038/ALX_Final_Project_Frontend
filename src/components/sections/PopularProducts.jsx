@@ -49,7 +49,7 @@ const PopularProducts = () => {
         </h4>
 
         <div className="flex justify-center">
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-white">
             <li className="p-4 bg-primary min-w-[120px] text-center cursor-pointer active:bg-purple-900 active:text-purple-100 transition-all duration-300" onClick={() => HandleFilter("All")}>
               All
             </li>

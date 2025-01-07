@@ -67,7 +67,7 @@ export const MobileNav = ({ isOpen, setIsOpen }: Props) => {
         className="absolute right-3 top-3 cursor-pointer lg:hidden"
         onClick={() => setIsOpen(false)}
       >
-        <X className="size-6" />
+        <X className="size-8" />
       </motion.button>
       <motion.ul className="flex flex-col text-xl font-medium text-gray-200">
         {navItems.map((item) => (

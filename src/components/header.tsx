@@ -94,7 +94,7 @@ export const Header: React.FC = () => {
         className="md:hidden"
         onClick={handleToggle}
       >
-        <Menu size={35} />
+        <Menu size={20} />
       </Button>
 
       {/* Mobile Navigation Drawer */}

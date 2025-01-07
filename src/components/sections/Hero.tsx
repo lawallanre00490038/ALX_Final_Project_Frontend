@@ -58,7 +58,7 @@ const Hero = () => {
         <Button 
           label="Shop now" 
           iconURL={arrowRight} 
-          backgroundColor="bg-purple-500"
+          backgroundColor="bg-primary"
           textColor="text-white"        
           borderColor="border-blue-500" 
           fullWidth={false}

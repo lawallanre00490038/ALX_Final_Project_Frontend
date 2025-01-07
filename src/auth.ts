@@ -71,11 +71,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       console.log("Session after callback:", session);
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // Ensures safe redirects
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
   },
 
   // Custom pages for authentication
   pages: {
-    signIn: "/authPages/login",
+    signIn: "/login",
     // error: "/auth/error", 
   },
 

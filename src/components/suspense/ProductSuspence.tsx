@@ -1,5 +1,5 @@
-import PopularProductCard from "../PopularProductCard";
-import { PopularProductCardSkeleton } from "../PopularProductCard";
+import PopularProductCard, { PopularProductCardSkeleton } from "../PopularProductCard";
+
 
 
 

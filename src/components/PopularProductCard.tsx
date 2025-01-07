@@ -7,58 +7,56 @@ import { formatCurrency } from "@/utils/Getter";
 import Button from "./Button";
 import { useCart } from "@/context/CartContext";
 
+const PopularProductCard = ({ id, imagePath, name, priceInNaira, description }: ProductCardProps) => {
+  const { cart, addToCart } = useCart();
 
-const PopularProductCard = ({id, imagePath, name, priceInNaira, description}: ProductCardProps) => {
+  console.log("Image path on popular products: ", imagePath);
 
-  const { addToCart } = useCart();
+  const handleAddToCart = (cart: any) => {
+    const productExists = cart.some((item: any) => item.product.imagePath === imagePath);
+    console.log("Product exists: ", productExists);
 
-
-  console.log("Image path on popular products: ", imagePath)
-
+    if (productExists) {
+      alert("Product is already in the cart!");
+    } else {
+      if (id) {
+        addToCart(id);
+      } else {
+        console.error("Product ID is undefined");
+      }
+    }
+  };
 
   return (
-    <div  className="flex flex-1 flex-col w-full max-sm:w-full">
-      <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">
-        {name}
-      </h3>
+    <div className="flex flex-1 flex-col w-full max-sm:w-full">
+      <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{name}</h3>
 
       <Link href={`/products/${id}/details`}>
-        <Image src={imagePath} alt={name} width={300} height={300} className="object-cover rounded-lg hover:scale-105 transition-transform duration-200 ease-in-out w-[300px] h-[300px]" />
-        
-        <p className="text-sm py-2 leading-normal font-semibold font-palanquin">
-            {description}
-        </p>
+        <Image
+          src={imagePath}
+          alt={name}
+          width={300}
+          height={300}
+          className="object-cover rounded-lg hover:scale-105 transition-transform duration-200 ease-in-out w-[300px] h-[300px]"
+        />
+        <p className="text-sm py-2 leading-normal font-semibold font-palanquin">{description}</p>
       </Link>
       <div className="flex justify-between items-center">
         <p className="font-semibold font-montserrat text-gray-900 text-sm leading-normal">
           {formatCurrency(priceInNaira)}
         </p>
-     
-          <Button 
-            label="Add to Cart" 
-            iconURL="" 
-            backgroundColor=""
-            textColor="text-white"        
-            borderColor="border-blue-500" 
-            fullWidth=""
-            classname="w-[120px] h-[50px]"
-            onClick={() => {
-              if (id) {
-                addToCart(id);
-              } else {
-                console.error("Product ID is undefined");
-              }
-            }}
-          />
+
+        
+        <button className="bg-primary text-white border-primary rounded-full flex justify-center items-center p-3 hover:bg-purple-950"
+         onClick={() => handleAddToCart(cart)}>
+          Add to Cart
+        </button>
       </div>
-      
     </div>
   );
 };
 
 export default PopularProductCard;
-
-
 
 
 
@@ -80,10 +78,5 @@ export const PopularProductCardSkeleton = () => {
     </div>
   );
 };
-
-
-
-
-
 
 
