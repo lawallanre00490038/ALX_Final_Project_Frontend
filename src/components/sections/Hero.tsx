@@ -42,14 +42,14 @@ const Hero = () => {
       <div className="relative xl:w-2/5 flex flex-col justify-center items-start w-full max-xl:padding-x pt-4">
       
       
-        <div className="relative z-10">
+        {/* <div className="relative z-10"> */}
           <UpsideText />
 
           <span className="text-purple-900 inline-block text-2xl md:text-8xl max-sm:text-[55px] max-md:leading-[70px] font-bold mt-[150px]">
               Mo'Adunni Fashion Store{" "}
           </span>{" "}
 
-        </div>
+        {/* </div> */}
       
 
         
