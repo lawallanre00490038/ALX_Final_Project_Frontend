@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
   const handleToggle = () => setIsOpen(!isOpen);
 
   return (
-    <header className="flex items-center justify-between px-4 py-2 md:px-24 md:py-7">
+    <header className="flex items-center justify-between px-4 py-2 md:px-24 md:py-7 fixed top-0 left-0 right-0 z-50 bg-white border-b border-border">
       {/* Logo */}
       <Link href="/">
         <Image src={headerLogo} alt="Logo" width={80} height={80} />
@@ -87,15 +87,30 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Toggle */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="md:hidden"
-        onClick={handleToggle}
-      >
-        <Menu size={20} />
-      </Button>
+      
+      <div className='gap-4 flex items-center md:hidden justify-between'>
+        
+        {/* Cart Icon */}
+        <Link href="/cart" className="relative flex items-center ml-4">
+        <ShoppingCart className="w-6 h-6 text-primary" />
+        {cart.length > 0 && (
+          <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+            {cart.length}
+          </span>
+        )}
+      </Link>
+
+        {/* Mobile Navigation Toggle */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          onClick={handleToggle}
+        >
+          <Menu size={20} />
+        </Button>
+      </div>
+      
 
       {/* Mobile Navigation Drawer */}
       <MobileNav isOpen={isOpen} setIsOpen={setIsOpen} />
