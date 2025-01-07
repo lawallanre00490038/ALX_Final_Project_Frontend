@@ -24,6 +24,11 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 https://medium.com/@kcsanjeeb091/implementing-jwt-based-authentication-with-next-js-v14-and-nextauth-v4-e3efca4b158b
 
 
+https://dev.to/hitesh_developer/slide-into-style-10-must-have-react-sidebar-npm-packages-5cdf
+
+
+Sliders: https://dev.to/hitesh_developer/slide-into-style-10-must-have-react-sidebar-npm-packages-5cdf
+
 
 flutter:
 https://github.com/Flutterwave/Node-v3/blob/master/documentation/billPayments.md

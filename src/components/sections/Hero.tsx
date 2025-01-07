@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getHeroProducts } from "@/app/actions/GetData";
 import { ProductCardProps } from "@/types/TypesProps";
+import UpsideText from "../slides/hero/UpsideText";
 
 const Hero = () => {
   const [bigDressImg, setBigDressImg] = useState("");
@@ -36,21 +37,23 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="w-full flex xl:flex-row flex-col justify-center min-h-screen gap-10 max-container"
+      className="w-full flex xl:flex-row flex-col justify-center min-h-screen gap-10 max-container mt-[100px]"
     >
       <div className="relative xl:w-2/5 flex flex-col justify-center items-start w-full max-xl:padding-x pt-4">
-        {/* <p className="text-xl text-purple-900">
-          Our Summer Collection
-        </p> */}
-        <h1 className="text-2xl md:text-8xl max-sm:text-[55px] max-md:leading-[70px] font-bold mt-[100px]">
-          <span className="xl:bg-white xl:whitespace-nowrap relative z-10 xl:pr-10 max-sm::p-0 text-purple-900">
-            Welcome to
-          </span>
-          <br />
-          <span className="text-purple-900 inline-block mt-3">
-            Mo'Adunni Fashion Store{" "}
+      
+      
+        <div className="relative z-10">
+          <UpsideText />
+
+          <span className="text-purple-900 inline-block text-2xl md:text-8xl max-sm:text-[55px] max-md:leading-[70px] font-bold mt-[150px]">
+              Mo'Adunni Fashion Store{" "}
           </span>{" "}
-        </h1>
+
+        </div>
+      
+
+        
+
         <p className="text-slate-gray text-lg leading-8 mt-6 mb-14 sm:max-w-sm">
          Step into comfort with our timeless African-inspired collections, curated and  crafted for the modern you.
         </p>
