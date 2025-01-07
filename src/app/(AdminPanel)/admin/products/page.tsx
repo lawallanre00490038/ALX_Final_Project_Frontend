@@ -44,6 +44,7 @@ export default function AdminProductsPage() {
           borderColor="purple" 
           fullWidth={false} 
           classname=""
+          onClick={() => {}}
         />
       </Link>
     </div>
