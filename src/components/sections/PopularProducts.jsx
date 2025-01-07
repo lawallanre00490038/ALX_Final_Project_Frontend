@@ -90,18 +90,7 @@ const PopularProducts = () => {
           </div>
         )}
       </TrackVisibility>
-
-      {/* {page < totalPages && (
-        <div className="text-center mt-8">
-          <button
-            className="bg-purple-900 text-purple-100 font-bold text-lg py-2 px-4 rounded hover:bg-purple-700"
-            onClick={loadMoreProducts}
-            disabled={loading}
-          >
-            {loading ? "Loading..." : "Load More"}
-          </button>
-        </div>
-      )} */}
+      
     </section>
   );
 };

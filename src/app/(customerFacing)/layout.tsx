@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google';
 import Structure from "@/components/Structure";
 import Providers from "@/components/providers/react-queries";
 import { SessionProvider } from "next-auth/react";
+import { CartProvider } from "@/context/CartContext";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,11 +27,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={`${poppins.variable} bg-background min-h-screen font-sans antialiased`}>
         <Providers>
+        <CartProvider>
           <SessionProvider>
             <Structure>
               {children}
             </Structure>
           </SessionProvider>
+        </CartProvider>
         </Providers>
       </body>
     </html>

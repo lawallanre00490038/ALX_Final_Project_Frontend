@@ -5,57 +5,51 @@ import Image from "next/image";
 import { ProductCardProps } from "@/types/TypesProps";
 import { formatCurrency } from "@/utils/Getter";
 import Button from "./Button";
+import { useCart } from "@/context/CartContext";
 
 
 const PopularProductCard = ({id, imagePath, name, priceInNaira, description}: ProductCardProps) => {
 
+  const { addToCart } = useCart();
+
+
   console.log("Image path on popular products: ", imagePath)
 
-  
-  // const carrousel = [shoe7, shoe9, shoe10, shoe11, shoe12];
-  // const [currentIndex, setCurrentIndex] = useState(0);
-
-  // useEffect(() => {
-  //   let intervalId: any;
-
-  //   if (isLast) {
-  //     intervalId = setInterval(() => {
-  //       setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
-  //     }, 1000);
-  //   }
-
-  //   return () => clearInterval(intervalId);
-  // }, [isLast]);
-
-  // const displayedImage = isLast ? carrousel[currentIndex] : imagePath;
 
   return (
     <div  className="flex flex-1 flex-col w-full max-sm:w-full">
       <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">
         {name}
       </h3>
-     
-      <Image src={imagePath} alt={name} width={300} height={300} className="object-cover rounded-lg hover:scale-105 transition-transform duration-200 ease-in-out w-[300px] h-[300px]" />
-      
-      <p className="text-sm py-2 leading-normal font-semibold font-palanquin">
-          {description}
-      </p>
+
+      <Link href={`/products/${id}/details`}>
+        <Image src={imagePath} alt={name} width={300} height={300} className="object-cover rounded-lg hover:scale-105 transition-transform duration-200 ease-in-out w-[300px] h-[300px]" />
+        
+        <p className="text-sm py-2 leading-normal font-semibold font-palanquin">
+            {description}
+        </p>
+      </Link>
       <div className="flex justify-between items-center">
         <p className="font-semibold font-montserrat text-gray-900 text-sm leading-normal">
           {formatCurrency(priceInNaira)}
         </p>
-
-        <Link href={`/products/${id}/purchase`}>
-        <Button 
-          label="Purchase" 
-          iconURL="" 
-          backgroundColor=""
-          textColor="text-white"        
-          borderColor="border-blue-500" 
-          fullWidth=""
-          classname="w-[120px] h-[50px]"
-        />
-        </Link>
+     
+          <Button 
+            label="Add to Cart" 
+            iconURL="" 
+            backgroundColor=""
+            textColor="text-white"        
+            borderColor="border-blue-500" 
+            fullWidth=""
+            classname="w-[120px] h-[50px]"
+            onClick={() => {
+              if (id) {
+                addToCart(id);
+              } else {
+                console.error("Product ID is undefined");
+              }
+            }}
+          />
       </div>
       
     </div>

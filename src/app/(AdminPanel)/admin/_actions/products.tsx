@@ -31,24 +31,11 @@ export async function addProduct(prevState: unknown, formData: FormData) {
 
   const data = result.data
 
-  // await fs.mkdir("products", { recursive: true })
-  // const filePath = `products/${crypto.randomUUID()}-${data.file.name}`
-  // await fs.writeFile(filePath, Buffer.from(await data.file.arrayBuffer()))
-
-
-  // Save Image
-  // await fs.mkdir(`public/products/${data.category}`, { recursive: true })
-  // const imagePath = `/products/${data.category}/${crypto.randomUUID()}-${data.image.name}`
-  // await fs.writeFile(
-  //   `public${imagePath}`,
-  //   Buffer.from(await data.image.arrayBuffer())
-  // )
 
  const imageResponse = (await saveAndManipulateImageToCloudinary(data))
  
- const imagePath = imagePathFunction(imageResponse)
-
- console.log("First Image from Cloudinary", imagePath)
+ const imagePath = await imagePathFunction(imageResponse)
+ console.log("Image response: ", imagePath)
 
   await db.product.create({
     data: {
@@ -88,22 +75,8 @@ export async function updateProduct(
 
   if (product == null) return notFound()
 
-  // let filePath = product.filePath
-  // if (data.file != null && data.file.size > 0) {
-  //   await fs.unlink(product.filePath)
-  //   filePath = `products/${crypto.randomUUID()}-${data.file.name}`
-  //   await fs.writeFile(filePath, Buffer.from(await data.file.arrayBuffer()))
-  // }
-
   let imagePath = product.imagePath
   if (data.image != null && data.image.size > 0) {
-    // await fs.unlink(`public${product.imagePath}`)
-    // imagePath = `/products/${crypto.randomUUID()}-${data.image.name}`
-    // await fs.writeFile(
-    //   `public${imagePath}`,
-    //   Buffer.from(await data.image.arrayBuffer())
-    // )
-    // Update the cloudinary image
     const imageResponse = (await saveAndManipulateImageToCloudinary(data))
     imagePath = imagePathFunction(imageResponse)
   }

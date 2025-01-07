@@ -8,9 +8,11 @@ const Button = ({
   borderColor,
   fullWidth,
   classname,
+  onClick, // Optional onClick prop
 }) => {
   return (
     <button
+      onClick={onClick || undefined} // Safely attach onClick only if it exists
       className={`flex justify-center items-center gap-2 px-7 py-4 border font-montserrat text-lg leading-none ${classname}
     ${
       backgroundColor
