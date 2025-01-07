@@ -1,5 +1,6 @@
 "use client"
 
+import { useCart } from "@/context/CartContext"
 import { formatCurrency } from "@/utils/Getter"
 import { handleAddToCart } from "@/utils/handleCart"
 import Image from "next/image"
@@ -18,6 +19,7 @@ type detailsFormProps = {
 
 export function DetailsForm({ product }: detailsFormProps) {
   const [quantity, setQuantity] = useState(1);
+  const { cart, addToCart } = useCart();
 
   return (
     <div className="max-w-5xl w-full mx-auto space-y-8 pt-[100px] md:pt-[150px] px-4">
@@ -61,7 +63,7 @@ export function DetailsForm({ product }: detailsFormProps) {
         </div>
         </div>
         <button className="bg-primary text-white border-primary rounded-full flex justify-center items-center p-3 hover:bg-purple-950"
-        onClick={() => handleAddToCart(id, 1, cart, addToCart)}>
+        onClick={() => handleAddToCart(cart, addToCart, product.imagePath, product.id, )}>
           Add to Cart
         </button>
       </div>

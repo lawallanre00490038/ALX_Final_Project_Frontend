@@ -4,28 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProductCardProps } from "@/types/TypesProps";
 import { formatCurrency } from "@/utils/Getter";
-import Button from "./Button";
 import { useCart } from "@/context/CartContext";
+import { handleAddToCart } from "@/utils/handleCart";
 
 const PopularProductCard = ({ id, imagePath, name, priceInNaira, description }: ProductCardProps) => {
   const { cart, addToCart } = useCart();
 
   console.log("Image path on popular products: ", imagePath);
-
-  const handleAddToCart = (cart: any) => {
-    const productExists = cart.some((item: any) => item.product.imagePath === imagePath);
-    console.log("Product exists: ", productExists);
-
-    if (productExists) {
-      alert("Product is already in the cart!");
-    } else {
-      if (id) {
-        addToCart(id);
-      } else {
-        console.error("Product ID is undefined");
-      }
-    }
-  };
 
   return (
     <div className="flex flex-1 flex-col w-full max-sm:w-full">
@@ -48,7 +33,7 @@ const PopularProductCard = ({ id, imagePath, name, priceInNaira, description }: 
 
         
         <button className="bg-primary text-white border-primary rounded-full flex justify-center items-center p-3 hover:bg-purple-950"
-         onClick={() => handleAddToCart(cart)}>
+         onClick={() => handleAddToCart(cart, addToCart, imagePath, id )}>
           Add to Cart
         </button>
       </div>
