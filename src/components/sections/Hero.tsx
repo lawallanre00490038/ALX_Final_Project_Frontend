@@ -42,7 +42,7 @@ const Hero = () => {
         {/* <p className="text-xl text-purple-900">
           Our Summer Collection
         </p> */}
-        <h1 className="text-3xl md:text-8xl max-sm:text-[55px] max-md:leading-[82px] font-bold mt-[100px]">
+        <h1 className="text-2xl md:text-8xl max-sm:text-[55px] max-md:leading-[82px] font-bold mt-[100px]">
           <span className="xl:bg-white xl:whitespace-nowrap relative z-10 xl:pr-10 max-sm::p-0 text-purple-900">
             Welcome to
           </span>
