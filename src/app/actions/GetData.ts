@@ -31,7 +31,8 @@ export const getAllData = cache(
     return data;
   },
   ["/", "getAllData"],
-  { revalidate: 60 * 60 * 24 }
+  // { revalidate: 60 * 60 * 24 }
+  { revalidate: 60 * 5 }
 );
 
 
@@ -58,7 +59,8 @@ export const getHeroProducts = cache(
     });
   },
   ["getHeroProducts"], 
-  { revalidate: 60 * 60 * 24 } 
+  // { revalidate: 60 * 60 * 24 }
+  { revalidate: 60 * 5 }
 );
 
 
