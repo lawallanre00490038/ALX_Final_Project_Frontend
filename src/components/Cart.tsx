@@ -79,13 +79,15 @@ const Cart: React.FC = () => {
             {/* <Colors colors={item.product.colors} /> */}
             <p>{item.product.description}</p>
             <p>{item.product.name}</p>
-            <div className="amount">
+            <div className="amount mb-4">
               <button className="count" onClick={() => updateQuantity(item.id, item.quantity - 1)}> - </button>
               <span>{item.quantity}</span>
               <button className="count" onClick={() => updateQuantity(item.id, item.quantity + 1)}> + </button>
             </div>
+            <div className="inline delete mt-10 p-2 hover:cursor-pointer text-sm bg-red-500 text-white rounded-lg hover:bg-red-800" 
+            onClick={() => removeFromCart(item.id)}>Remove</div>
           </div>
-          <div className="delete mr-8 md:mt-6 hover:cursor-pointer text-2xl" onClick={() => removeFromCart(item.id)}>X</div>
+         
         </div>
       ))}
       </div>

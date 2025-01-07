@@ -15,12 +15,8 @@ section .cart{
     cursor: pointer;
 }
 .delete{
-    position: absolute;
-    top:0;
-    right: 5px;
-    color: crimson;
     cursor: pointer;
-    font-weight: 900;
+    font-weight: 400;
 }
 .total{
     width: 100%;
