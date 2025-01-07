@@ -67,6 +67,7 @@ const Cart: React.FC = () => {
 
   return (
     <>
+      <div className='mt-[100px]'>
       {cart.map((item) => (
         <div key={item.id} className="details cart flex items-center relative">
           <Image src={item.product.imagePath} alt={item.product.name} width={300} height={300} />
@@ -87,15 +88,16 @@ const Cart: React.FC = () => {
           <div className="delete mr-8 md:mt-6 hover:cursor-pointer text-2xl" onClick={() => removeFromCart(item.id)}>X</div>
         </div>
       ))}
+      </div>
 
       
-      <div className="total">
+      <div className="total flex justify-between flex-col items-center gap-4 md:flex-row mt-4">
         <button
           className='bg-slate-500 md:p-4 p-2 rounded-lg text-white hover:bg-slate-700'
           type='submit'
           title="Pay with Flutterwave"
         >
-          <span className="sr-only">Pay with Flutterwave</span>
+          <span className="sr-only text-sm">Pay with Flutterwave</span>
           {session ? <FlutterWaveButton {...fwConfig} /> : <Link href="/login">Login to pay</Link>}
         </button>
         <h3>Total: {formatCurrency(total)}</h3>

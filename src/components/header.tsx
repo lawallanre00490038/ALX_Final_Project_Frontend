@@ -88,6 +88,8 @@ export const Header: React.FC = () => {
       </div>
 
       
+
+      {/* Mobile Navigation */}
       <div className='gap-4 flex items-center md:hidden justify-between'>
         
         {/* Cart Icon */}
