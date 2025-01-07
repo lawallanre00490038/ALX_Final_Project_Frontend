@@ -62,7 +62,8 @@ const Hero = () => {
           textColor="text-white"        
           borderColor="border-blue-500" 
           fullWidth={false}
-          classname=""        
+          classname="" 
+        onClick={() => {}}       
         />
         </Link>
         <div className="flex justify-start items-start flex-wrap w-full mt-20 gap-16">
