@@ -13,7 +13,7 @@ export default function UpsideText() {
       height: 0,
       innerHeight: 0,
       transform: 'perspective(600px) rotateX(0deg)',
-      color: '#8fa5b6',
+      color: '#8fa5b6'
     },
     enter: [
       { opacity: 1, height: 80, innerHeight: 80 },
