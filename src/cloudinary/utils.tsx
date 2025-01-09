@@ -37,7 +37,6 @@ export const saveAndManipulateImageToCloudinary = async (data: any, deletePrevio
 
 
  export const imagePathFunction = (imageResponse: any)=> {
-  console.log("Image response: ", imageResponse.secure_url)
     // return `${process.env.CLOUDINARY_IMAGE_URL}/${imageResponse?.asset_folder}/${imageResponse?.display_name}.jpg`
     return imageResponse?.secure_url || imageResponse?.url || "";
  }

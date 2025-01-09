@@ -14,15 +14,12 @@ export async function getUserFromDb(email: string, passwordHash: string): Promis
     const user = await db.user.findUnique({
       where: { email },
     });
-    console.log("User retrieved from DB:", user);
 
       // Check if the user exists and if the password hash matches
     if (user && await bcrypt.compare(passwordHash, user.password)) {
-      console.log("User found and password matches.");
       return user;
     }
     else {
-      console.log("User not found or password does not match.");
       return null;
     }
 

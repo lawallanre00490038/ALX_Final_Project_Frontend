@@ -28,7 +28,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           const password = credentials.password as string;
           
           const user = await getUserFromDb(email, password);
-          console.log("User found:", user);
 
           if (!user) {
             throw new Error("Invalid credentials.");
@@ -52,13 +51,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
-      console.log("JWT callback called:", token, user); 
       // Add custom logic for handling JWT tokens
       if (user) {
         token.id = user.id;
         token.email = user.email;
       }
-      console.log("JWT token:", token);
       return token;
     },
     async session({ session, token }) {
@@ -68,7 +65,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.name = token.name as string;  // Add name
         session.user.image = token.picture as string;  // Add image
       }
-      console.log("Session after callback:", session);
+
       return session;
     },
     async redirect({ url, baseUrl }) {

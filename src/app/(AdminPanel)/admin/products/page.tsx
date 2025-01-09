@@ -105,7 +105,7 @@ const ProductTable = ({products}: {products: Product[]})=> {
                 <MoreVertical className="cursor-pointer"/>
                 <span className="sr-only">Actions</span>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="flex flex-col gap-2 justify-center bg-primary p-2">
+              <DropdownMenuContent className="flex flex-col gap-2 justify-center bg-primary p-2 text-white">
                 <DropdownMenuItem asChild className="p-2">
                   <Link download href={`/admin/products/${product.id}/download`}>
                     Download

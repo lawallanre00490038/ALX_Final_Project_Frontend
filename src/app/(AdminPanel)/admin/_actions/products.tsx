@@ -35,7 +35,6 @@ export async function addProduct(prevState: unknown, formData: FormData) {
  const imageResponse = (await saveAndManipulateImageToCloudinary(data))
  
  const imagePath = await imagePathFunction(imageResponse)
- console.log("Image response: ", imagePath)
 
   await db.product.create({
     data: {
@@ -60,25 +59,25 @@ const editSchema = addSchema.extend({
   image: imageSchema.optional(),
 })
 
-export async function updateProduct(
-  id: string,
-  prevState: unknown,
-  formData: FormData
-) {
-  const result = editSchema.safeParse(Object.fromEntries(formData.entries()))
-  if (result.success === false) {
-    return result.error.formErrors.fieldErrors
+export async function updateProduct(id: string, prevState: unknown, formData: FormData) {
+  const result = editSchema.safeParse(Object.fromEntries(formData.entries()));
+  if (!result.success) {
+    return result.error.formErrors.fieldErrors;
   }
 
-  const data = result.data
-  const product = await db.product.findUnique({ where: { id } })
+  const data = result.data;
+  const product = await db.product.findUnique({ where: { id } });
 
-  if (product == null) return notFound()
+  if (!product) return notFound();
 
-  let imagePath = product.imagePath
-  if (data.image != null && data.image.size > 0) {
-    const imageResponse = (await saveAndManipulateImageToCloudinary(data))
-    imagePath = imagePathFunction(imageResponse)
+  let imagePath = product.imagePath;
+
+  if (data.image && data.image.size > 0) {
+    const imageResponse = await saveAndManipulateImageToCloudinary(data);
+    imagePath = await imagePathFunction(imageResponse); // Ensure it returns a string
+    if (!imagePath || typeof imagePath !== "string") {
+      throw new Error("Invalid imagePath value.");
+    }
   }
 
   await db.product.update({
@@ -87,15 +86,15 @@ export async function updateProduct(
       name: data.name,
       description: data.description,
       priceInNaira: data.priceInNaira,
-      // filePath,
-      imagePath,
+      imagePath, // Validated as string
     },
-  })
+  });
 
-  revalidatePath("/")
-  revalidatePath("/products")
-  redirect("/admin/products")
+  revalidatePath("/");
+  revalidatePath("/products");
+  redirect("/admin/products");
 }
+
 
 export async function toggleProductAvailability(
   id: string,
@@ -140,6 +139,5 @@ export const getAllProducts = async () => {
       orderBy: {name: "asc"},
     },
   )
-  console.log(data)
   return data
 }

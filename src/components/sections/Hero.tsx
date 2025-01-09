@@ -18,12 +18,10 @@ const Hero = () => {
   // Loading state
   const fetchProducts = async () => {
     let response = await getHeroProducts();
-    console.log("Hero Images", response);
     
     // const res = response[0].imagePath;
     const res = '/frontImg.jpg';
     setBigDressImg(res);
-    console.log("Hero Bigimage", response[0].imagePath);
     setProducts(response as any);
   };
 

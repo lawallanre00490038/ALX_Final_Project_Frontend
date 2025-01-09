@@ -14,7 +14,7 @@ export const ActiveToggleDropdownItem = ({
   return (
     <DropdownMenuItem
     disabled={isPending}
-    className="cursor-pointer px-2 hover:bg-slate-500 hover:text-white"
+    className="cursor-pointer px-2 hover:bg-slate-500 hover:text-white text-white"
       onClick={() => {
         startTransition(async () => {
           await toggleProductAvailability(id, !isAvailableForPurchase);

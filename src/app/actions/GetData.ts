@@ -27,7 +27,6 @@ export const getAllData = cache(
       },
     });
     console.log(data);
-    console.log("category", data.length);
     return data;
   },
   ["/", "getAllData"],

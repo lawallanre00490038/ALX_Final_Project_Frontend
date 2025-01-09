@@ -1,6 +1,5 @@
 export const handleAddToCart = (cart: any, addToCart: any, imagePath: any, id: any) => {
   const productExists = cart.some((item: any) => item.product.imagePath === imagePath);
-  console.log("Product exists: ", productExists);
 
   if (productExists) {
     alert("Product is already in the cart!");

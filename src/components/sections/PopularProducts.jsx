@@ -18,7 +18,6 @@ const PopularProducts = () => {
   };
 
   const HandleFilter = async (category) => {
-    console.log(category);
     const products = category === "All" ? await getAllData() : await getAllData(category);
     // const filteredProducts = category === "All" ? products : products.filter((product) => product.category === category);
     setProducts(products);

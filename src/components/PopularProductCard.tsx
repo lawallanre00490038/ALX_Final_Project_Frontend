@@ -10,8 +10,6 @@ import { handleAddToCart } from "@/utils/handleCart";
 const PopularProductCard = ({ id, imagePath, name, priceInNaira, description }: ProductCardProps) => {
   const { cart, addToCart } = useCart();
 
-  console.log("Image path on popular products: ", imagePath);
-
   return (
     <div className="flex flex-1 flex-col w-full max-sm:w-full">
       <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{name}</h3>

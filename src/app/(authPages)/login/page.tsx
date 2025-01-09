@@ -31,12 +31,10 @@ export default function LoginPage() {
       })
 
       if (result?.error) {
-        console.log("Error after login at form page", result.error)
         setError('Invalid email or password')
       } else {
         router.push('/') // Redirect to dashboard on successful login
       }
-      console.log("Success after login at form page")
     } catch (error) {
       setError('An unexpected error occurred')
     }

@@ -8,9 +8,7 @@ export default async function ProductDetailsPage({
   params: { id: string };
 }) {
   const product = await db.product.findUnique({ where: { id } });
-  console.log(id);
   console.log( product);
-  console.log(typeof id);
   if (product == null) return notFound();
 
 
