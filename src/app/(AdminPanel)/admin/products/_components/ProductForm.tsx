@@ -25,6 +25,12 @@ export function ProductForm({ product }: { product?: Product | null }) {
   const [imagePreview, setImagePreview] = useState<string | null>(
     product?.imagePath || null
   );
+
+  const [category, setCategory] = useState<string | undefined>(
+    product?.category || ""
+  );
+
+
   const router = useRouter();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +68,9 @@ export function ProductForm({ product }: { product?: Product | null }) {
           name="category"
           required
           className="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-          defaultValue={product?.category || ""}
+          // defaultValue={product?.category || ""}
+          value={category}
+          onChange={(e) => setCategory((e.target.value) || undefined)}
         >
           <option value="">Select a category</option>
           <option value="ANKARA">Ankara</option>

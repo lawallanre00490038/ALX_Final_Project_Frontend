@@ -86,6 +86,7 @@ export async function updateProduct(id: string, prevState: unknown, formData: Fo
       name: data.name,
       description: data.description,
       priceInNaira: data.priceInNaira,
+      category: data.category as ProductCategory,
       imagePath, // Validated as string
     },
   });
